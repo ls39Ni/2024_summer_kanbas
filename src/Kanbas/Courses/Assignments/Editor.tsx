@@ -93,10 +93,10 @@ export default function AssignmentEditor() {
               <input
                 type="checkbox"
                 name="check-options"
-                id="wd-file-uploads"
+                id="wd-file-upload"
               />
 
-              <label htmlFor="wd-file-uploads">File Uploads</label>
+              <label htmlFor="wd-file-upload">File Uploads</label>
             </td>
           </tr>
           <br />

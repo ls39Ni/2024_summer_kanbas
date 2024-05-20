@@ -17,7 +17,7 @@ export default function Assignments() {
           </a>
           <br />
           <span>Multiple Modules | </span>
-          <strong>Not available until</strong>
+          <strong>Not available until </strong>
           <span>May 6 at 12:00am |</span>
           <br />
           <strong>Due </strong>
@@ -33,7 +33,7 @@ export default function Assignments() {
           </a>
           <br />
           <span>Multiple Modules | </span>
-          <strong>Not available until</strong>
+          <strong>Not available until </strong>
           <span>May 13 at 12:00am |</span>
           <br />
           <strong>Due </strong>
@@ -48,8 +48,8 @@ export default function Assignments() {
           </a>
           <br />
           <span>Multiple Modules | </span>
-          <strong>Not available until</strong>
-          <span>May 6 at 20:00am |</span>
+          <strong>Not available until </strong>
+          <span>May 20 at 12:00am |</span>
           <br />
           <strong>Due </strong>
           <span>May 27 at 11:59pm | 100 pts</span>
