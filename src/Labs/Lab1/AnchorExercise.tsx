@@ -9,7 +9,7 @@ export default function AnchorExercise() {
       <br />
       <a
         id="wd-github"
-        href="https://github.com/ls39Ni/kanbas-react-web-app-suf-2024"
+        href="https://github.com/ls39Ni/kanbas-react-web-app"
       >
         click here
       </a>
