@@ -26,6 +26,11 @@ export default function TOC() {
           Kanbas
         </a>
       </li>
+      <li>
+        <a id="wd-github" href="https://github.com/ls39Ni/kanbas-react-web-app-">
+          GitHub
+        </a>
+      </li>
     </ul>
   );
 }
