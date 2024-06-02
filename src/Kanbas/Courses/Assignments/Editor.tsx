@@ -1,5 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 export default function AssignmentEditor() {
   return (
     <div className="container my-4" id="wd-assignments-editor">
