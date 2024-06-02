@@ -1,9 +1,7 @@
-import { A } from "flowbite-svelte";
 import "./index.css";
 import "./ReactIconsSampler";
 import ReactIconsSampler from "./ReactIconsSampler";
 import ScreenSizeLabel from "./ScreenSizeLabel";
-import { useLocation } from "react-router";
 
 export default function Lab2() {
   return (
