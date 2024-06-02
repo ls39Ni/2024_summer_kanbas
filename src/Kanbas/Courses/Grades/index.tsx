@@ -1,7 +1,6 @@
 import { FaSearch } from "react-icons/fa";
 import GradeSideBar from "./GradeSideBar";
 import { CiFilter } from "react-icons/ci";
-import { Dropdown } from "flowbite-svelte";
 export default function Grades() {
   return (
     <div id="wd-grades" className="wd-grades fs-5">
