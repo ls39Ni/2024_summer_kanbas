@@ -834,22 +834,22 @@ export default function Lab2() {
         <h2>Tabs</h2>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link active" href="#">
+            <a className="nav-link active" href="#/Labs">
               Active
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="#/Labs">
               Link
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="#/Labs">
               Link
             </a>
           </li>{" "}
           <li className="nav-item">
-            <a className="nav-link disabled" href="#">
+            <a className="nav-link disabled" href="#/Labs">
               Disabled
             </a>
           </li>
@@ -868,7 +868,7 @@ export default function Lab2() {
             <p className="card-text">
               Stacking the most powerful rocket in history. Mars or bust!
             </p>
-            <a href="#" className="btn btn-primary">
+            <a href="#/Labs" className="btn btn-primary">
               Boldly Go
             </a>
           </div>
