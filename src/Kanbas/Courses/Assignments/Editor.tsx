@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 export default function AssignmentEditor() {
   return (
     <div className="container my-4" id="wd-assignments-editor">
@@ -14,14 +15,14 @@ export default function AssignmentEditor() {
           <div className="col-12 col-md-12 border p-3">
             <p>
               The assignment is{" "}
-              <a href="#" className="text-danger">
+              <a className="text-danger">
                 available online
               </a>
             </p>
             <p>
               Submit a link to the landing page of your Web application running
               on{" "}
-              <a href="#" className="text-primary">
+              <a className="text-primary">
                 Netlify
               </a>
               .
@@ -32,7 +33,7 @@ export default function AssignmentEditor() {
               <li>Links to each of the lab assignments</li>
               <li>
                 Link to the{" "}
-                <a href="#" className="text-primary">
+                <a className="text-primary">
                   Kanbas
                 </a>{" "}
                 application
@@ -41,7 +42,7 @@ export default function AssignmentEditor() {
             </ul>
             <p>
               The{" "}
-              <a href="#" className="text-primary">
+              <a className="text-primary">
                 Kanbas
               </a>{" "}
               application should include a link to navigate back to the landing
