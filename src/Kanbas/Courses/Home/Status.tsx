@@ -7,9 +7,6 @@ import { FaChartSimple } from "react-icons/fa6";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { GoBellFill } from "react-icons/go";
 
-{
-  /* Find more icons */
-}
 export default function CourseStatus() {
   return (
     <div id="wd-course-status" style={{ width: "300px" }}>

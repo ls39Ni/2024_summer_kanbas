@@ -295,6 +295,7 @@ export default function Lab2() {
           <img
             className="wd-float-right"
             src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg"
+            alt="picture_1"
           />
           <div className="wd-float-done"></div>
         </div>
@@ -832,39 +833,39 @@ export default function Lab2() {
         <h2>Tabs</h2>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link active" href="#">
+            <p className="nav-link active" >
               Active
-            </a>
+            </p>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <p className="nav-link" >
               Link
-            </a>
+            </p>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <p className="nav-link" >
               Link
-            </a>
+            </p>
           </li>{" "}
           <li className="nav-item">
-            <a className="nav-link disabled" href="#">
+            <p className="nav-link disabled" >
               Disabled
-            </a>
+            </p>
           </li>
         </ul>
       </div>
       <div id="wd-css-navigating-with-cards">
         <h2>Cards</h2>
         <div className="card" style={{ width: "18rem" }}>
-          <img src="images/stacked.jpg" className="card-img-top" />
+          <img src="images/stacked.jpg" className="card-img-top" alt="picture_2" />
           <div className="card-body">
             <h5 className="card-title">Stacking Starship</h5>
             <p className="card-text">
               Stacking the most powerful rocket in history. Mars or bust!
             </p>
-            <a href="#" className="btn btn-primary">
+            <p className="btn btn-primary">
               Boldly Go
-            </a>
+            </p>
           </div>
         </div>
       </div>

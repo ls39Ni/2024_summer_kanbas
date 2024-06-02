@@ -16,6 +16,7 @@ export default function KanbasNavigation() {
         target="_blank"
         href="https://www.northeastern.edu/"
         className="list-group-item bg-black border-0"
+        rel='noreferrer'
       >
         <img src="/images/NEU.png" width="75px" alt="NEU logo" />
       </a>

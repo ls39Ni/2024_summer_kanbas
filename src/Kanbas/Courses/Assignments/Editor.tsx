@@ -15,16 +15,16 @@ export default function AssignmentEditor() {
           <div className="col-12 col-md-12 border p-3">
             <p>
               The assignment is{" "}
-              <a className="text-danger">
+              <p className="text-danger">
                 available online
-              </a>
+              </p>
             </p>
             <p>
               Submit a link to the landing page of your Web application running
               on{" "}
-              <a className="text-primary">
+              <p className="text-primary">
                 Netlify
-              </a>
+              </p>
               .
             </p>
             <p>The landing page should include the following:</p>
@@ -33,18 +33,18 @@ export default function AssignmentEditor() {
               <li>Links to each of the lab assignments</li>
               <li>
                 Link to the{" "}
-                <a className="text-primary">
+                <p className="text-primary">
                   Kanbas
-                </a>{" "}
+                </p>{" "}
                 application
               </li>
               <li>Links to all relevant source code repositories</li>
             </ul>
             <p>
               The{" "}
-              <a className="text-primary">
+              <p className="text-primary">
                 Kanbas
-              </a>{" "}
+              </p>{" "}
               application should include a link to navigate back to the landing
               page.
             </p>

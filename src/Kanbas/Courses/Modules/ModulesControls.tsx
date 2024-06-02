@@ -23,48 +23,47 @@ export default function ModulesControls() {
         </button>
         <ul className="dropdown-menu">
           <li>
-            <a
+            <p
               id="wd-publish-all-modules-and-items-btn"
               className="dropdown-item"
-              href="#"
             >
               <GreenCheckmark />
               Publish all modules and items
-            </a>
+            </p>
           </li>
           <li>
-            <a
+            <p
               id="wd-publish-modules-only-button"
               className="dropdown-item"
-              href="#"
+        
             >
               <GreenCheckmark />
               Publish modules only
-            </a>
+            </p>
           </li>
           {/* Create two more items with IDs wd-unpublish-all-modules-and-items and
               wd-unpublish-modules-only with labels Unpublish all modules and items
               and Unpublish modules only */}
           <li>
-            <a
+            <p
               id="wd-unpublish-all-modules-and-items"
               className="dropdown-item"
-              href="#"
+      
               
             >
               <ProhibitMark />
               Unpublish all modules and items
-            </a>
+            </p>
           </li>
           <li>
-            <a
+            <p
               id="wd-unpublish-modules-only"
               className="dropdown-item"
-              href="#"
+           
             >
               <ProhibitMark />
               Unpublish modules only
-            </a>
+            </p>
           </li>
         </ul>
       </div>
