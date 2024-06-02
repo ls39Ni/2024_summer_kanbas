@@ -1,7 +1,10 @@
+import { A } from "flowbite-svelte";
 import "./index.css";
 import "./ReactIconsSampler";
 import ReactIconsSampler from "./ReactIconsSampler";
 import ScreenSizeLabel from "./ScreenSizeLabel";
+import { useLocation } from "react-router";
+
 export default function Lab2() {
   return (
     <div className="container">
@@ -833,39 +836,43 @@ export default function Lab2() {
         <h2>Tabs</h2>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <p className="nav-link active" >
+            <a className="nav-link active" href="#">
               Active
-            </p>
+            </a>
           </li>
           <li className="nav-item">
-            <p className="nav-link" >
+            <a className="nav-link" href="#">
               Link
-            </p>
+            </a>
           </li>
           <li className="nav-item">
-            <p className="nav-link" >
+            <a className="nav-link" href="#">
               Link
-            </p>
+            </a>
           </li>{" "}
           <li className="nav-item">
-            <p className="nav-link disabled" >
+            <a className="nav-link disabled" href="#">
               Disabled
-            </p>
+            </a>
           </li>
         </ul>
       </div>
       <div id="wd-css-navigating-with-cards">
         <h2>Cards</h2>
         <div className="card" style={{ width: "18rem" }}>
-          <img src="images/stacked.jpg" className="card-img-top" alt="picture_2" />
+          <img
+            src="images/stacked.jpg"
+            className="card-img-top"
+            alt="picture_2"
+          />
           <div className="card-body">
             <h5 className="card-title">Stacking Starship</h5>
             <p className="card-text">
               Stacking the most powerful rocket in history. Mars or bust!
             </p>
-            <p className="btn btn-primary">
+            <a href="#" className="btn btn-primary">
               Boldly Go
-            </p>
+            </a>
           </div>
         </div>
       </div>

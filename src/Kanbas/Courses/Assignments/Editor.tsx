@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 export default function AssignmentEditor() {
   return (
     <div className="container my-4" id="wd-assignments-editor">
@@ -14,46 +14,32 @@ export default function AssignmentEditor() {
         <div className="row">
           <div className="col-12 col-md-12 border p-3">
             <p>
-              The assignment is{" "}
-              <p className="text-danger">
-                available online
-              </p>
+              The assignment is 
+              <span className="text-danger"> available online</span>
             </p>
             <p>
               Submit a link to the landing page of your Web application running
-              on{" "}
-              <p className="text-primary">
-                Netlify
-              </p>
-              .
+              on Netlify.
             </p>
             <p>The landing page should include the following:</p>
             <ul>
               <li>Your full name and section</li>
               <li>Links to each of the lab assignments</li>
               <li>
-                Link to the{" "}
-                <p className="text-primary">
-                  Kanbas
-                </p>{" "}
-                application
+                Link to the Kanbas application
               </li>
               <li>Links to all relevant source code repositories</li>
             </ul>
             <p>
-              The{" "}
-              <p className="text-primary">
-                Kanbas
-              </p>{" "}
-              application should include a link to navigate back to the landing
-              page.
+              The Kanbas application should
+              include a link to navigate back to the landing page.
             </p>
           </div>
         </div>
       </div>
       <div className="container-fluid">
         <div className="row mb-3">
-        <div className="col-md-12 col-sm-12 col-lg-12 d-flex custom-padding-lg custom-padding-md">
+          <div className="col-md-12 col-sm-12 col-lg-12 d-flex custom-padding-lg custom-padding-md">
             <label htmlFor="wd-points" className="form-label me-2">
               Points
             </label>
@@ -109,7 +95,7 @@ export default function AssignmentEditor() {
           </div>
         </div>
         <div className="row mb-3">
-          <label className="form-label col-md-12 col-sm-12 col-lg-12 d-flex custom4-padding-lg custom4-padding-md " >
+          <label className="form-label col-md-12 col-sm-12 col-lg-12 d-flex custom4-padding-lg custom4-padding-md ">
             Online Entry Options
           </label>
           <div className="flex-column col-md-12 col-sm-12 col-lg-12 d-flex custom4-padding-lg custom4-padding-md">
@@ -139,10 +125,7 @@ export default function AssignmentEditor() {
                 id="wd-media-recordings"
                 className="form-check-input"
               />
-              <label
-                htmlFor="wd-media-recordings"
-                className="form-check-label"
-              >
+              <label htmlFor="wd-media-recordings" className="form-check-label">
                 Media Recordings
               </label>
             </div>
@@ -173,7 +156,7 @@ export default function AssignmentEditor() {
         </div>
         <div className="row mb-3">
           <div className="col-12 custom5-padding-lg custom5-padding-md d-flex ">
-            <label style={{paddingRight:"5px"}}>Assign</label>
+            <label style={{ paddingRight: "5px" }}>Assign</label>
             <label
               htmlFor="wd-assign-to"
               className="form-label me-2"
@@ -209,7 +192,10 @@ export default function AssignmentEditor() {
           </div>
         </div>
         <div className="row mb-3">
-          <div className="col-12 custom6-padding-lg custom6-padding-md d-flex " style={{ gap: "10px" }}>
+          <div
+            className="col-12 custom6-padding-lg custom6-padding-md d-flex "
+            style={{ gap: "10px" }}
+          >
             <div className="d-flex align-items-center">
               <label
                 htmlFor="wd-available-from"
