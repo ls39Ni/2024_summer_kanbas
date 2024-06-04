@@ -1,6 +1,8 @@
 import { FaSearch } from "react-icons/fa";
 import GradeSideBar from "./GradeSideBar";
 import { CiFilter } from "react-icons/ci";
+import { LiaFileExportSolid } from "react-icons/lia";
+
 export default function Grades() {
   return (
     <div id="wd-grades" className="wd-grades fs-5">
@@ -21,11 +23,20 @@ export default function Grades() {
                 <span className="input-group-text bg-transparent border border-light border-end-0">
                   <FaSearch />
                 </span>
-                <input
-                  type="text"
-                  placeholder="Search Students"
-                  className="form-control border-light border-start-0 "
-                />
+                <select
+                  className="form-select border-light border-start-0"
+                  id="studentName"
+                >
+                  <option value="">Search Students</option>
+                  <option value="Jane Adams">Jane Adams</option>
+                  <option value="Christina Allen">Christina Allen</option>
+                  <option value="Samreen Ansari">Samreen Ansari</option>
+                  <option value="Han Bao">Han Bao</option>
+                  <option value="Mahi Sai Srinivas Bobbili">
+                    Mahi Sai Srinivas Bobbili
+                  </option>
+                  <option value="Siran Cao">Siran Cao</option>
+                </select>
               </div>
             </td>
             <td>
@@ -33,11 +44,16 @@ export default function Grades() {
                 <span className="input-group-text bg-transparent border border-light border-end-0">
                   <FaSearch />
                 </span>
-                <input
-                  type="text"
-                  placeholder="Search Assignments"
-                  className="form-control border-light border-start-0"
-                />
+                <select
+                  className="form-select border-light border-start-0"
+                  id="assignmentName"
+                >
+                  <option value="">Search Assignments</option>
+                  <option value="A1">Assignment 1</option>
+                  <option value="A2">Assignment 2</option>
+                  <option value="A3">Assignment 3</option>
+                  <option value="A4">Assignment 4</option>
+                </select>
               </div>
             </td>
           </tr>
@@ -64,8 +80,8 @@ export default function Grades() {
                 <br />
               </th>
               <th style={{ fontWeight: "normal" }}>
-                A3 CSS 
-                <br ></br>Out of 1..
+                A3 CSS
+                <br></br>Out of 1..
                 <br />
               </th>
               <th style={{ fontWeight: "normal" }}>
@@ -101,7 +117,10 @@ export default function Grades() {
               <td className="table-secondary">100%</td>
               <td className="table-secondary">100%</td>
               <td>
-                <input className="border-light form-control border-light text-center" placeholder="88.03%"></input> 
+                <input style={{ width: "70px" }} placeholder="88.03%"></input>
+                <button id="wd-export-icon" className="btn btn-lg mb-2">
+                  <LiaFileExportSolid />
+                </button>
               </td>
               <td className="table-secondary">98.99%</td>
             </tr>

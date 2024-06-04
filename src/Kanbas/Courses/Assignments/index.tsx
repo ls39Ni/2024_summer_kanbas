@@ -27,12 +27,16 @@ export default function Assignments() {
             </button>
           </div>
 
-          <ul className="wd-lessons list-group rounded-0">
+          <ul
+            className="wd-lessons list-group rounded-0"
+            style={{
+              borderLeftWidth: "thick",
+              borderLeftColor: "green",
+              borderLeftStyle: "solid",
+            }}
+          >
             <li className="wd-lesson list-group-item p-0">
-              <div
-                className="wd-lesson-content p-3 ps-1"
-                style={{ borderLeftWidth: "thick", borderLeftColor: "green", borderLeftStyle: "solid" }}
-              >
+              <div className="wd-lesson-content p-3 ps-1">
                 <a
                   className="wd-assignment-link"
                   href="#/Kanbas/Courses/1234/Assignments/123"
@@ -55,12 +59,16 @@ export default function Assignments() {
             </li>
           </ul>
 
-          <ul className="wd-lessons list-group rounded-0">
+          <ul
+            className="wd-lessons list-group rounded-0"
+            style={{
+              borderLeftWidth: "thick",
+              borderLeftColor: "green",
+              borderLeftStyle: "solid",
+            }}
+          >
             <li className="wd-lesson list-group-item p-0">
-              <div
-                className="wd-lesson-content p-3 ps-1"
-                style={{ borderLeftWidth: "thick", borderLeftColor: "green", borderLeftStyle: "solid" }}
-              >
+              <div className="wd-lesson-content p-3 ps-1">
                 <a
                   className="wd-assignment-link"
                   href="#/Kanbas/Courses/1234/Assignments/123"
@@ -83,12 +91,16 @@ export default function Assignments() {
             </li>
           </ul>
 
-          <ul className="wd-lessons list-group rounded-0">
+          <ul
+            className="wd-lessons list-group rounded-0"
+            style={{
+              borderLeftWidth: "thick",
+              borderLeftColor: "green",
+              borderLeftStyle: "solid",
+            }}
+          >
             <li className="wd-lesson list-group-item p-0">
-              <div
-                className="wd-lesson-content p-3 ps-1"
-                style={{ borderLeftWidth: "thick", borderLeftColor: "green", borderLeftStyle: "solid" }}
-              >
+              <div className="wd-lesson-content p-3 ps-1">
                 <a
                   className="wd-assignment-link"
                   href="#/Kanbas/Courses/1234/Assignments/123"
