@@ -92,47 +92,54 @@ export default function Grades() {
           </thead>
           <tbody>
             <tr>
-              <td className="text-danger">Jane Adams</td>
+              <td className="text-danger text-start">Jane Adams</td>
               <td>100%</td>
               <td>96.67%</td>
               <td>92.18%</td>
               <td>66.22%</td>
             </tr>
             <tr className="table-secondary">
-              <td className="text-danger ">Christina Allen</td>
+              <td className="text-danger text-start ">Christina Allen</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
             </tr>
             <tr>
-              <td className="text-danger">Samreen Ansari</td>
+              <td className="text-danger text-start">Samreen Ansari</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
             </tr>
             <tr>
-              <td className="text-danger table-secondary">Han Bao</td>
+              <td className="text-danger table-secondary text-start">
+                Han Bao
+              </td>
               <td className="table-secondary">100%</td>
               <td className="table-secondary">100%</td>
               <td>
-                <input style={{ width: "70px" }} placeholder="88.03%"></input>
-                <button id="wd-export-icon" className="btn btn-lg mb-2">
+                <input
+                  style={{ width: "70px", height: "20px" }}
+                  placeholder="88.03%"
+                ></input>
+                <button id="wd-export-icon" className="btn btn-sm">
                   <LiaFileExportSolid />
                 </button>
               </td>
               <td className="table-secondary">98.99%</td>
             </tr>
             <tr>
-              <td className="text-danger">Mahi Sai SrinivasBobbili</td>
+              <td className="text-danger text-start">
+                Mahi Sai SrinivasBobbili
+              </td>
               <td>100%</td>
               <td>96.67%</td>
               <td>98.37%</td>
               <td>100%</td>
             </tr>
             <tr className="table-secondary">
-              <td className="text-danger">Siran Cao</td>
+              <td className="text-danger text-start">Siran Cao</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>

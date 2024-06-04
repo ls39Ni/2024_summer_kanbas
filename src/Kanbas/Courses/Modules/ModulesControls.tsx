@@ -82,7 +82,7 @@ export default function ModulesControls() {
         className="btn btn-lg  btn-secondary me-1 float-end"
         type="button"
       >
-        Collapse-all
+        Collapse All
       </button>
     </div>
   );
