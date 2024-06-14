@@ -1,5 +1,17 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-export default function AssignmentEditor() {
+import { useLocation, useParams } from "react-router";
+import { Link } from "react-router-dom";
+import * as db from "../../Database";
+
+export default function Assignments() {
+  const { cid } = useParams();
+  const { pathname } = useLocation();
+  const assignmentName = pathname.split("/")[5];
+
+  const assignments = db.assignments.filter(
+    (assignment) => assignment._id === assignmentName
+  );
+
   return (
     <div className="container mt-4" id="wd-assignments-editor">
       <form>
@@ -9,14 +21,16 @@ export default function AssignmentEditor() {
               Assignment Name
             </label>
           </strong>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              id="wd-name"
-              value="A1 - ENV + HTML"
-              className="form-control"
-            />
-          </div>
+          {assignments.map((assignment) => (
+            <div className="col-sm-10">
+              <input
+                type="text"
+                id="wd-name"
+                value={assignment.title}
+                className="form-control"
+              />
+            </div>
+          ))}
         </div>
         <div className="mb-3 row">
           <div className="col-sm-10">
@@ -180,7 +194,7 @@ export default function AssignmentEditor() {
                 <label
                   htmlFor="wd-assign-to"
                   className="col-form-control text-start col-sm-4"
-                  style={{ whiteSpace: "nowrap" }}
+                  style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
                 >
                   Assign to
                 </label>
@@ -195,7 +209,7 @@ export default function AssignmentEditor() {
                 <label
                   htmlFor="wd-due-date"
                   className="form-label"
-                  style={{ whiteSpace: "nowrap" }}
+                  style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
                 >
                   Due
                 </label>
@@ -211,7 +225,7 @@ export default function AssignmentEditor() {
                     <label
                       htmlFor="wd-available-from"
                       className="form-label"
-                      style={{ whiteSpace: "nowrap" }}
+                      style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
                     >
                       Available from
                     </label>
@@ -227,7 +241,7 @@ export default function AssignmentEditor() {
                     <label
                       htmlFor="wd-available-until"
                       className="form-label mb-2"
-                      style={{ whiteSpace: "nowrap" }}
+                      style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
                     >
                       Until
                     </label>
@@ -245,12 +259,19 @@ export default function AssignmentEditor() {
             <hr />
             <div className="row mb-3">
               <div className="d-flex justify-content-end">
-                <button type="button" className="btn btn-secondary me-2">
+                <Link
+                  to={`/Kanbas/Courses/${cid}/Assignments`}
+                  className="btn btn-secondary me-2"
+                >
                   Cancel
-                </button>
-                <button type="button" className="btn btn-primary">
+                </Link>
+
+                <Link
+                  to={`/Kanbas/Courses/${cid}/Assignments`}
+                  className="btn btn-primary me-2"
+                >
                   Save
-                </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,14 +1,48 @@
+import React from "react";
+import { useParams } from "react-router";
 import { FaSearch } from "react-icons/fa";
 import GradeSideBar from "./GradeSideBar";
 import { CiFilter } from "react-icons/ci";
-import { LiaFileExportSolid } from "react-icons/lia";
+import * as db from "../../Database";
 
 export default function Grades() {
+  const { cid } = useParams();
+  const courseEnrollments = db.enrollments.filter(
+    (enrollment) => enrollment.course === cid
+  );
+  const studentIds = courseEnrollments.map((enrollment) => enrollment.user);
+  const studentsGrades = db.grades.filter((grade) =>
+    studentIds.includes(grade.student)
+  );
+  const assignments = db.assignments.filter(
+    (assignment) => assignment.course === cid
+  );
+  const assignmentIds = assignments.map((assignment) => assignment._id);
+  const courseGrades = studentsGrades.filter((grade) =>
+    assignmentIds.includes(grade.assignment)
+  );
+  const gradesByStudent = studentIds
+    .map((studentId) => {
+      const studentGrades = courseGrades.filter(
+        (grade) => grade.student === studentId
+      );
+      const user = db.users.find((user) => user._id === studentId);
+      if (user) {
+        const fullName = `${user.firstName} ${user.lastName}`;
+        return {
+          studentId,
+          fullName,
+          grades: studentGrades,
+        };
+      }
+      return null;
+    })
+    .filter((student) => student !== null);
+
   return (
     <div id="wd-grades" className="wd-grades fs-5">
       <GradeSideBar />
       <br />
-
       <table width="100%" className="search-box">
         <thead>
           <tr>
@@ -28,14 +62,20 @@ export default function Grades() {
                   id="studentName"
                 >
                   <option value="">Search Students</option>
-                  <option value="Jane Adams">Jane Adams</option>
-                  <option value="Christina Allen">Christina Allen</option>
-                  <option value="Samreen Ansari">Samreen Ansari</option>
-                  <option value="Han Bao">Han Bao</option>
-                  <option value="Mahi Sai Srinivas Bobbili">
-                    Mahi Sai Srinivas Bobbili
-                  </option>
-                  <option value="Siran Cao">Siran Cao</option>
+                  {courseEnrollments.map((enrollment, index) => {
+                    const user = db.users.find(
+                      (user) => user._id === enrollment.user
+                    );
+                    if (user) {
+                      const fullName = `${user.firstName} ${user.lastName}`;
+                      return (
+                        <option key={index} value={enrollment.user}>
+                          {fullName}
+                        </option>
+                      );
+                    }
+                    return null;
+                  })}
                 </select>
               </div>
             </td>
@@ -49,10 +89,11 @@ export default function Grades() {
                   id="assignmentName"
                 >
                   <option value="">Search Assignments</option>
-                  <option value="A1">Assignment 1</option>
-                  <option value="A2">Assignment 2</option>
-                  <option value="A3">Assignment 3</option>
-                  <option value="A4">Assignment 4</option>
+                  {assignments.map((assignment, index) => (
+                    <option key={index} value={assignment._id}>
+                      {assignment.title}
+                    </option>
+                  ))}
                 </select>
               </div>
             </td>
@@ -71,80 +112,27 @@ export default function Grades() {
           <thead>
             <tr className="table-secondary py-2">
               <th>Student Name</th>
-              <th style={{ fontWeight: "normal" }}>
-                A1 SETUP Out of 100
-                <br />
-              </th>
-              <th style={{ fontWeight: "normal" }}>
-                A2 HTML Out of 100
-                <br />
-              </th>
-              <th style={{ fontWeight: "normal" }}>
-                A3 CSS
-                <br></br>Out of 1..
-                <br />
-              </th>
-              <th style={{ fontWeight: "normal" }}>
-                A4 BOOTSTRAP Out of 100
-                <br />
-              </th>
+              {assignments.map((assignment, index) => (
+                <th key={index} style={{ fontWeight: "normal" }}>
+                  {assignment.title} Out of 100
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="text-danger text-start">Jane Adams</td>
-              <td>100%</td>
-              <td>96.67%</td>
-              <td>92.18%</td>
-              <td>66.22%</td>
-            </tr>
-            <tr className="table-secondary">
-              <td className="text-danger text-start ">Christina Allen</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-            </tr>
-            <tr>
-              <td className="text-danger text-start">Samreen Ansari</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-            </tr>
-            <tr>
-              <td className="text-danger table-secondary text-start">
-                Han Bao
-              </td>
-              <td className="table-secondary">100%</td>
-              <td className="table-secondary">100%</td>
-              <td>
-                <input
-                  style={{ width: "70px", height: "20px" }}
-                  placeholder="88.03%"
-                ></input>
-                <button id="wd-export-icon" className="btn btn-sm">
-                  <LiaFileExportSolid />
-                </button>
-              </td>
-              <td className="table-secondary">98.99%</td>
-            </tr>
-            <tr>
-              <td className="text-danger text-start">
-                Mahi Sai SrinivasBobbili
-              </td>
-              <td>100%</td>
-              <td>96.67%</td>
-              <td>98.37%</td>
-              <td>100%</td>
-            </tr>
-            <tr className="table-secondary">
-              <td className="text-danger text-start">Siran Cao</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-            </tr>
+            {gradesByStudent.map((student, index) => (
+              <tr key={index}>
+                <td className="text-danger text-start">{student?.fullName}</td>
+                {assignments.map((assignment, index) => {
+                  const grade = student?.grades.find(
+                    (g) => g.assignment === assignment._id
+                  );
+                  return (
+                    <td key={index}>{grade ? `${grade.grade}%` : "N/A"}</td>
+                  );
+                })}
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

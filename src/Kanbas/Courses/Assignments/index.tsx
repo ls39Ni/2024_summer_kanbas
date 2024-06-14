@@ -1,12 +1,18 @@
-import LessonControlButtons from "../Modules/LessonControlButton";
-import AssignmentControls from "./AssignmentControls";
+import React from "react";
+import { useParams } from "react-router";
 import { BsGripVertical } from "react-icons/bs";
 import { MdOutlineAssignment } from "react-icons/md";
 import { GoPlus } from "react-icons/go";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { FaSortDown } from "react-icons/fa";
+import * as db from "../../Database";
+import LessonControlButtons from "../Modules/LessonControlButton";
+import AssignmentControls from "./AssignmentControls";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments.filter((assignment) => assignment.course === cid);
+
   return (
     <div id="wd-assignments">
       <AssignmentControls />
@@ -26,104 +32,59 @@ export default function Assignments() {
               40% of Total
             </button>
           </div>
+          {assignments.map((assignment, index) => {
+            let availableFrom = "";
+            let dueDate = "";
+            let points = 100;
 
-          <ul
-            className="wd-lessons list-group rounded-0"
-            style={{
-              borderLeftWidth: "thick",
-              borderLeftColor: "green",
-              borderLeftStyle: "solid",
-            }}
-          >
-            <li className="wd-lesson list-group-item p-0">
-              <div className="wd-lesson-content p-3 ps-1">
-                <a
-                  className="wd-assignment-link"
-                  href="#/Kanbas/Courses/1234/Assignments/123"
-                >
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdOutlineAssignment className="me-2 fs-3 icon-green" />
-                  A1 - ENV + HTML
-                  <LessonControlButtons />
-                  <br />
-                </a>
-                <div className="px-4 mx-5">
-                  <span className="text-danger">Multiple Modules | </span>
-                  <strong>Not available until </strong>
-                  <span>May 6 at 12:00am |</span>
-                  <br />
-                  <strong>Due </strong>
-                  <span>May 13 at 11:59pm | 100 pts</span>
-                </div>
-              </div>
-            </li>
-          </ul>
+            if (index === 0) {
+              availableFrom = "May 6 at 12:00am";
+              dueDate = "May 13 at 11:59pm";
+            } else if (index === 1) {
+              availableFrom = "May 13 at 12:00am";
+              dueDate = "May 20 at 11:59pm";
+            } else if (index === 2) {
+              availableFrom = "May 20 at 12:00am";
+              dueDate = "May 27 at 11:59pm";
+            }
 
-          <ul
-            className="wd-lessons list-group rounded-0"
-            style={{
-              borderLeftWidth: "thick",
-              borderLeftColor: "green",
-              borderLeftStyle: "solid",
-            }}
-          >
-            <li className="wd-lesson list-group-item p-0">
-              <div className="wd-lesson-content p-3 ps-1">
-                <a
-                  className="wd-assignment-link"
-                  href="#/Kanbas/Courses/1234/Assignments/123"
-                >
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdOutlineAssignment className="me-2 fs-3 icon-green" />
-                  A2 - CSS + BOOTSTRAP
-                  <LessonControlButtons />
-                  <br />
-                </a>
-                <div className="px-4 mx-5">
-                  <span className="text-danger">Multiple Modules | </span>
-                  <strong>Not available until </strong>
-                  <span>May 13 at 12:00am |</span>
-                  <br />
-                  <strong>Due </strong>
-                  <span>May 20 at 11:59pm | 100 pts</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-
-          <ul
-            className="wd-lessons list-group rounded-0"
-            style={{
-              borderLeftWidth: "thick",
-              borderLeftColor: "green",
-              borderLeftStyle: "solid",
-            }}
-          >
-            <li className="wd-lesson list-group-item p-0">
-              <div className="wd-lesson-content p-3 ps-1">
-                <a
-                  className="wd-assignment-link"
-                  href="#/Kanbas/Courses/1234/Assignments/123"
-                >
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdOutlineAssignment className="me-2 fs-3 icon-green" />
-                  A3 - JS + React
-                  <LessonControlButtons />
-                  <br />
-                </a>
-                <div className="px-4 mx-5">
-                  <span className="text-danger">Multiple Modules | </span>
-                  <strong>Not available until </strong>
-                  <span>May 20 at 12:00am |</span>
-                  <br />
-                  <strong>Due </strong>
-                  <span>May 27 at 11:59pm | 100 pts</span>
-                </div>
-              </div>
-            </li>
-          </ul>
+            return (
+              <ul
+                key={assignment._id}
+                className="wd-lessons list-group rounded-0"
+                style={{
+                  borderLeftWidth: "thick",
+                  borderLeftColor: "green",
+                  borderLeftStyle: "solid",
+                }}
+              >
+                <li className="wd-lesson list-group-item p-0">
+                  <div className="wd-lesson-content p-3 ps-1">
+                    <a
+                      className="wd-assignment-link"
+                      href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                    >
+                      <BsGripVertical className="me-2 fs-3" />
+                      <MdOutlineAssignment className="me-2 fs-3 icon-green" />
+                      {assignment.title}
+                      <LessonControlButtons />
+                      <br />
+                    </a>
+                    <div className="px-4 mx-5">
+                      <span className="text-danger">Multiple Modules | </span>
+                      <strong>Not available until </strong>
+                      <span>{availableFrom} |</span>
+                      <br />
+                      <strong>Due </strong>
+                      <span>{dueDate} | {points} pts</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            );
+          })}
         </li>
       </ul>
     </div>
   );
-}
+} 
