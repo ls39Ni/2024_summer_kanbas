@@ -83,7 +83,7 @@ export default function Assignments() {
               >
                 Assignment Group
               </label>
-              <div className="col-sm-8 dflex">
+              <div className="col-sm-8 ">
                 <select id="wd-group" className="form-select">
                   <option value="ASSIGNMENTS">ASSIGNMENTS</option>
                 </select>
@@ -110,148 +110,152 @@ export default function Assignments() {
               >
                 Submission Type
               </label>
-              <div className="col-sm-8">
-                <select
-                  id="wd-submission-type"
-                  className="form-control"
-                  style={{ flex: "1" }}
-                >
-                  <option value="Online">Online</option>
-                </select>
 
-                <div>
-                  <label className="col-form-label col-sm-4 my-3">
-                    Online Entry Options
-                  </label>
-                  <div className="form-check mb-3">
-                    <input
-                      type="checkbox"
-                      id="wd-text-entry"
-                      className="form-check-input"
-                    />
-                    <label htmlFor="wd-text-entry" className="form-check-label">
-                      Text Entry
+              <div className="col-sm-8">
+                <div className="p-3 border">
+                  <select id="wd-submission-type" className="form-select mb-3">
+                    <option value="Online">Online</option>
+                  </select>
+
+                  <div>
+                    <label className="col-form-label col-sm-4 mb-3">
+                      Online Entry Options
                     </label>
-                  </div>
-                  <div className="form-check mb-3">
-                    <input
-                      type="checkbox"
-                      id="wd-website-url"
-                      className="form-check-input"
-                    />
-                    <label
-                      htmlFor="wd-website-url"
-                      className="form-check-label"
-                    >
-                      Website URL
-                    </label>
-                  </div>
-                  <div className="form-check mb-3">
-                    <input
-                      type="checkbox"
-                      id="wd-media-recordings"
-                      className="form-check-input"
-                    />
-                    <label
-                      htmlFor="wd-media-recordings"
-                      className="form-check-label"
-                    >
-                      Media Recordings
-                    </label>
-                  </div>
-                  <div className="form-check mb-3">
-                    <input
-                      type="checkbox"
-                      id="wd-student-annotation"
-                      className="form-check-input"
-                    />
-                    <label
-                      htmlFor="wd-student-annotation"
-                      className="form-check-label"
-                    >
-                      Student Annotation
-                    </label>
-                  </div>
-                  <div className="form-check mb-3">
-                    <input
-                      type="checkbox"
-                      id="wd-file-upload"
-                      className="form-check-input"
-                    />
-                    <label
-                      htmlFor="wd-file-upload"
-                      className="form-check-label"
-                    >
-                      File Uploads
-                    </label>
+                    <div className="form-check mb-3">
+                      <input
+                        type="checkbox"
+                        id="wd-text-entry"
+                        className="form-check-input"
+                      />
+                      <label
+                        htmlFor="wd-text-entry"
+                        className="form-check-label"
+                      >
+                        Text Entry
+                      </label>
+                    </div>
+                    <div className="form-check mb-3">
+                      <input
+                        type="checkbox"
+                        id="wd-website-url"
+                        className="form-check-input"
+                      />
+                      <label
+                        htmlFor="wd-website-url"
+                        className="form-check-label"
+                      >
+                        Website URL
+                      </label>
+                    </div>
+                    <div className="form-check mb-3">
+                      <input
+                        type="checkbox"
+                        id="wd-media-recordings"
+                        className="form-check-input"
+                      />
+                      <label
+                        htmlFor="wd-media-recordings"
+                        className="form-check-label"
+                      >
+                        Media Recordings
+                      </label>
+                    </div>
+                    <div className="form-check mb-3">
+                      <input
+                        type="checkbox"
+                        id="wd-student-annotation"
+                        className="form-check-input"
+                      />
+                      <label
+                        htmlFor="wd-student-annotation"
+                        className="form-check-label"
+                      >
+                        Student Annotation
+                      </label>
+                    </div>
+                    <div className="form-check mb-3">
+                      <input
+                        type="checkbox"
+                        id="wd-file-upload"
+                        className="form-check-input"
+                      />
+                      <label
+                        htmlFor="wd-file-upload"
+                        className="form-check-label"
+                      >
+                        File Uploads
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="row mb-3">
+            <div className="row mb-3 mt-3">
               <label className="col-form-label text-end col-sm-4">Assign</label>
               <div className="col-sm-8">
-                <label
-                  htmlFor="wd-assign-to"
-                  className="col-form-control text-start col-sm-4"
-                  style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
-                >
-                  Assign to
-                </label>
+                <div className="border p-2">
+                  <label
+                    htmlFor="wd-assign-to"
+                    className="col-form-control text-start col-sm-4"
+                    style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
+                  >
+                    Assign to
+                  </label>
 
-                <input
-                  type="text"
-                  id="wd-assign-to"
-                  value="Everyone"
-                  className="form-control mb-3"
-                />
+                  <input
+                    type="text"
+                    id="wd-assign-to"
+                    value="Everyone"
+                    className="form-control mb-3"
+                  />
 
-                <label
-                  htmlFor="wd-due-date"
-                  className="form-label"
-                  style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
-                >
-                  Due
-                </label>
-                <input
-                  type="date"
-                  id="wd-due-date"
-                  value="2024-05-13"
-                  className="form-control mb-3"
-                />
+                  <label
+                    htmlFor="wd-due-date"
+                    className="form-label"
+                    style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
+                  >
+                    Due
+                  </label>
+                  <input
+                    type="date"
+                    id="wd-due-date"
+                    value="2024-05-13"
+                    className="form-control mb-3"
+                  />
 
-                <div className="row mb-3">
-                  <div className="col">
-                    <label
-                      htmlFor="wd-available-from"
-                      className="form-label"
-                      style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
-                    >
-                      Available from
-                    </label>
-                    <input
-                      type="date"
-                      id="wd-available-from"
-                      value="2024-05-06"
-                      className="form-control mb-3"
-                      style={{ flex: "1" }}
-                    />
-                  </div>
-                  <div className="col">
-                    <label
-                      htmlFor="wd-available-until"
-                      className="form-label mb-2"
-                      style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
-                    >
-                      Until
-                    </label>
-                    <input
-                      type="date"
-                      id="wd-available-until"
-                      value="2024-05-20"
-                      className="form-control"
-                      style={{ flex: "1" }}
-                    />
+                  <div className="row mb-3">
+                    <div className="col">
+                      <label
+                        htmlFor="wd-available-from"
+                        className="form-label"
+                        style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
+                      >
+                        Available from
+                      </label>
+                      <input
+                        type="date"
+                        id="wd-available-from"
+                        value="2024-05-06"
+                        className="form-control mb-3"
+                        style={{ flex: "1" }}
+                      />
+                    </div>
+                    <div className="col">
+                      <label
+                        htmlFor="wd-available-until"
+                        className="form-label mb-2"
+                        style={{ whiteSpace: "nowrap", fontWeight: "bold" }}
+                      >
+                        Until
+                      </label>
+                      <input
+                        type="date"
+                        id="wd-available-until"
+                        value="2024-05-20"
+                        className="form-control"
+                        style={{ flex: "1" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
