@@ -32,21 +32,8 @@ export default function Assignments() {
               40% of Total
             </button>
           </div>
-          {assignments.map((assignment, index) => {
-            let availableFrom = "";
-            let dueDate = "";
+          {assignments.map((assignment) => {
             let points = 100;
-
-            if (index === 0) {
-              availableFrom = "May 6 at 12:00am";
-              dueDate = "May 13 at 11:59pm";
-            } else if (index === 1) {
-              availableFrom = "May 13 at 12:00am";
-              dueDate = "May 20 at 11:59pm";
-            } else if (index === 2) {
-              availableFrom = "May 20 at 12:00am";
-              dueDate = "May 27 at 11:59pm";
-            }
 
             return (
               <ul
@@ -73,10 +60,10 @@ export default function Assignments() {
                     <div className="px-4 mx-5">
                       <span className="text-danger">Multiple Modules | </span>
                       <strong>Not available until </strong>
-                      <span>{availableFrom} |</span>
+                      <span>{assignment.availableDate} |</span>
                       <br />
                       <strong>Due </strong>
-                      <span>{dueDate} | {points} pts</span>
+                      <span>{assignment.dueDate} | {points} pts</span>
                     </div>
                   </div>
                 </li>
