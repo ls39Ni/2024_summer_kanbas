@@ -1,10 +1,16 @@
 import { FaPlus } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import "./style.css";
-
-export default function AssignmentControls() {
+export default function AssignmentsControls({
+  addAssignment,
+}: {
+  addAssignment: () => void;
+}) {
   return (
-    <div id="wd-assignments-controls" className="text-nowrap btn-secondary">
+    <div
+      id="wd-assignment-controls container"
+      className="text-nowrap btn-secondary"
+    >
       <div className="d-flex justify-content-between align-items-center w-100">
         <div className="position-relative flex-grow-1 me-3">
           <CiSearch
@@ -19,13 +25,22 @@ export default function AssignmentControls() {
             style={{ paddingLeft: "35px" }}
           />
         </div>
+
         <button
           id="wd-add-assignment-group"
-          className="btn btn-lg btn-light position-relative"
+          className="btn btn-lg btn-secondary me-1 float-end"
         >
-          + Group
+          <FaPlus
+            className="position-relative me-2"
+            style={{ bottom: "1px" }}
+          />
+          Group
         </button>
-        <button id="wd-add-assignment" className="btn btn-lg btn-danger me-1">
+        <button
+          id="wd-add-assignment"
+          className="btn btn-lg btn-danger me-1"
+          onClick={addAssignment}
+        >
           <FaPlus
             className="position-relative me-2"
             style={{ bottom: "1px" }}
