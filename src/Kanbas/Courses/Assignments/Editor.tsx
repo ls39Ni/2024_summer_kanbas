@@ -16,9 +16,8 @@ export default function AssignmentEditor() {
       description: "",
       points: "",
       assignTo: "",
-      due: "",
-      available: "",
-      until: "",
+      availableDate: "",
+      dueDate: "",
     }
   );
 
@@ -194,9 +193,9 @@ export default function AssignmentEditor() {
               className="form-control mb-3"
               type="date"
               id="wd-due-date"
-              value={assignment.due}
+              value={assignment.dueDate}
               onChange={(e) =>
-                setAssignment((v: any) => ({ ...v, due: e.target.value }))
+                setAssignment((v: any) => ({ ...v, dueDate: e.target.value }))
               }
             />
             <div className="row mb-3">
@@ -212,11 +211,11 @@ export default function AssignmentEditor() {
                   className="form-control mb-3"
                   id="wd-available-from"
                   type="date"
-                  value={assignment.available}
+                  value={assignment.availableDate}
                   onChange={(e) =>
                     setAssignment((v: any) => ({
                       ...v,
-                      available: e.target.value,
+                      availableDate: e.target.value,
                     }))
                   }
                 />
