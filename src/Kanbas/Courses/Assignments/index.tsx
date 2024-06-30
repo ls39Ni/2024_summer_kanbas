@@ -1,9 +1,9 @@
 import AssignmentsControls from "./AssignmentControls";
-import { deleteAssignment } from "./reducer"
+import { deleteAssignment } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
 import { BsGripVertical } from "react-icons/bs";
 import { MdOutlineAssignment } from "react-icons/md";
-import { useParams, useNavigate, useLocation } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import LessonControlButtons from "./LessonControButton";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import "./style.css";
@@ -13,9 +13,7 @@ export default function Assignments() {
   const { cid } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-
   return (
     <div id="wd-assignments">
       <AssignmentsControls
@@ -42,7 +40,10 @@ export default function Assignments() {
             {assignments
               .filter((assignment: any) => assignment.course === cid)
               .map((assignment: any) => (
-                <li key={assignment._id} className="wd-assignment-list-item list-group-item p-6 ps-1">
+                <li
+                  key={assignment._id}
+                  className="wd-assignment-list-item list-group-item p-6 ps-1"
+                >
                   <BsGripVertical className="me-2 fs-3" />
                   <MdOutlineAssignment className="me-2 fs-3 icon-green" />
                   <div style={{ display: "inline-flex" }}>
