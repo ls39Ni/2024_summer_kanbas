@@ -14,6 +14,7 @@ export default function Assignments() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+
   return (
     <div id="wd-assignments">
       <AssignmentsControls
@@ -44,27 +45,40 @@ export default function Assignments() {
                   key={assignment._id}
                   className="wd-assignment-list-item list-group-item p-6 ps-1"
                 >
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdOutlineAssignment className="me-2 fs-3 icon-green" />
-                  <div style={{ display: "inline-flex" }}>
-                    {assignment.title}
-                    <br />
-                    Multiple Modules | Not available until{" "}
-                    {assignment.availableDate}
-                    <br />
-                    Due {assignment.dueDate} | {assignment.points} pts
-                  </div>
-                  <AssignmentControlButtons
-                    assignmentId={assignment._id}
-                    deleteAssignment={(assignmentId) => {
-                      dispatch(deleteAssignment(assignmentId));
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
                     }}
-                    editAssignment={() =>
-                      navigate(
-                        `/Kanbas/Courses/${assignment.course}/Assignments/${assignment._id}`
-                      )
-                    }
-                  />
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <BsGripVertical className="me-2 fs-3" />
+                      <MdOutlineAssignment className="me-2 fs-3 icon-green" />
+                      <div>{assignment.title}</div>
+                    </div>
+                    <AssignmentControlButtons
+                      assignmentId={assignment._id}
+                      deleteAssignment={(assignmentId) => {
+                        dispatch(deleteAssignment(assignmentId));
+                      }}
+                      editAssignment={() =>
+                        navigate(
+                          `/Kanbas/Courses/${assignment.course}/Assignments/${assignment._id}`
+                        )
+                      }
+                    />
+                  </div>
+                  <div style={{ marginTop: "10px", paddingLeft: "75px" }}>
+                    <span className="text-danger">Multiple Modules</span>
+                    <span style={{ marginLeft: "5px" }}>
+                      | <strong>Not available until </strong>
+                      {assignment.availableDate}
+                    </span>
+                    <br />
+                    <strong>Due </strong>
+                    {assignment.dueDate} | {assignment.points} pts
+                  </div>
                 </li>
               ))}
           </ul>

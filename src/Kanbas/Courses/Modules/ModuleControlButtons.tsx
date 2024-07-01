@@ -1,6 +1,6 @@
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "./GreenCheckmark";
-import { FaPlus } from "react-icons/fa6";
+import { BsPlus } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 export default function ModuleControlButtons({
@@ -24,7 +24,7 @@ export default function ModuleControlButtons({
         onClick={() => deleteModule(moduleId)}
       />
       <GreenCheckmark />
-      <FaPlus className="fs-1" />
+      <BsPlus className="fs-1" />
       <IoEllipsisVertical className="fs-4" />
     </div>
   );

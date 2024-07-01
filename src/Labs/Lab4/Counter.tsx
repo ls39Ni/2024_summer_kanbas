@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Styles from "../Lab3/Styles";
 export default function Counter() {
   const [count, setCount] = useState(7);
-
   console.log(count);
   return (
-    <div>
+    <div id="wd-counter-use-state">
       <h2>Counter: {count}</h2>
-      <button onClick={() => setCount(count + 1)} id="wd-counter-up-click">
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+        className="btn btn-success"
+        id="wd-counter-up-click"
+      >
         Up
       </button>
-      <button onClick={() => setCount(count - 1)} id="wd-counter-down-click">
+      <button
+        style={{ marginLeft: "6px" }}
+        onClick={() => {
+          setCount(count - 1);
+        }}
+        className="btn btn-danger"
+        id="wd-counter-down-click"
+      >
         Down
       </button>
       <hr />
