@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Styles from "../Lab3/Styles";
 export default function Counter() {
   const [count, setCount] = useState(7);
   console.log(count);
