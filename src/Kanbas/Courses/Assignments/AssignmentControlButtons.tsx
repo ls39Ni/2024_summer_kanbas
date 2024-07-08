@@ -46,7 +46,7 @@ export default function AssignmentControlButtons({
               ></button>
             </div>
             <div className="modal-body">
-              Are you sure you want to Delete the assignment?
+              Are you sure you want to delete the assignment?
             </div>
             <div className="modal-footer">
               <button
@@ -59,6 +59,7 @@ export default function AssignmentControlButtons({
               <button
                 type="button"
                 className="btn btn-primary"
+                data-bs-dismiss="modal"
                 onClick={() => deleteAssignment(assignmentId)}
               >
                 OK

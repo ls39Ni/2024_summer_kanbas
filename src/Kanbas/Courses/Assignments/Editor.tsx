@@ -1,25 +1,50 @@
 import "./style.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addAssignment, updateAssignment } from "./reducer";
 import { useParams, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
+import * as client from "./client";
 
 export default function AssignmentEditor() {
-  const { aid, cid } = useParams();
+  const { aid, cid } = useParams<{ aid: string, cid: string | undefined }>();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-  const [assignment, setAssignment] = useState(
-    assignments.find((assignment: any) => assignment._id === aid) || {
-      title: "New Assignment",
-      description: "New Assignment Description",
-      points: "",
-      assignTo: "",
-      availableDate: "",
-      dueDate: "",
+  const [assignment, setAssignment] = useState({
+    title: "New Assignment",
+    description: "New Assignment Description",
+    points: "",
+    assignTo: "",
+    availableDate: "",
+    dueDate: "",
+    until: ""
+  });
+
+  useEffect(() => {
+    if (aid !== "new") {
+      const foundAssignment = assignments.find((a: any) => a._id === aid);
+      if (foundAssignment) {
+        setAssignment(foundAssignment);
+      }
     }
-  );
+  }, [aid, assignments]);
+
+  const saveAssignment = async () => {
+    try {
+      let savedAssignment;
+      if (aid === "new") {
+        savedAssignment = await client.createAssignments(cid!, assignment);
+        dispatch(addAssignment(savedAssignment)); 
+      } else {
+        savedAssignment = await client.updateAssignment(assignment);
+        dispatch(updateAssignment(savedAssignment)); 
+      }
+      navigate(-1);
+    } catch (error) {
+      console.error("Error updating assignment:", error);
+    }
+  };
 
   return (
     <div id="wd-assignments-editor">
@@ -32,7 +57,7 @@ export default function AssignmentEditor() {
           className="form-control mb-3"
           value={assignment.title}
           onChange={(e) =>
-            setAssignment((v: any) => ({ ...v, title: e.target.value }))
+            setAssignment((v) => ({ ...v, title: e.target.value }))
           }
         />
         <textarea
@@ -42,7 +67,7 @@ export default function AssignmentEditor() {
           style={{ resize: "none" }}
           value={assignment.description}
           onChange={(e) =>
-            setAssignment((v: any) => ({ ...v, description: e.target.value }))
+            setAssignment((v) => ({ ...v, description: e.target.value }))
           }
         />
       </div>
@@ -56,7 +81,7 @@ export default function AssignmentEditor() {
             className="form-control"
             value={assignment.points}
             onChange={(e) =>
-              setAssignment((v: any) => ({ ...v, points: e.target.value }))
+              setAssignment((v) => ({ ...v, points: e.target.value }))
             }
           />
         </div>
@@ -179,7 +204,7 @@ export default function AssignmentEditor() {
               className="form-control mb-3"
               value={assignment.assignTo}
               onChange={(e) =>
-                setAssignment((v: any) => ({ ...v, assignTo: e.target.value }))
+                setAssignment((v) => ({ ...v, assignTo: e.target.value }))
               }
             />
             <label
@@ -195,7 +220,7 @@ export default function AssignmentEditor() {
               id="wd-due-date"
               value={assignment.dueDate}
               onChange={(e) =>
-                setAssignment((v: any) => ({ ...v, dueDate: e.target.value }))
+                setAssignment((v) => ({ ...v, dueDate: e.target.value }))
               }
             />
             <div className="row mb-3">
@@ -213,7 +238,7 @@ export default function AssignmentEditor() {
                   type="date"
                   value={assignment.availableDate}
                   onChange={(e) =>
-                    setAssignment((v: any) => ({
+                    setAssignment((v) => ({
                       ...v,
                       availableDate: e.target.value,
                     }))
@@ -235,7 +260,7 @@ export default function AssignmentEditor() {
                   className="form-control"
                   style={{ flex: "1" }}
                   onChange={(e) =>
-                    setAssignment((v: any) => ({ ...v, until: e.target.value }))
+                    setAssignment((v) => ({ ...v, until: e.target.value }))
                   }
                 />
               </div>
@@ -255,15 +280,7 @@ export default function AssignmentEditor() {
           <button
             className="btn btn-danger"
             onClick={() => {
-              dispatch(
-                aid === "new"
-                  ? addAssignment({
-                      ...assignment,
-                      course: cid,
-                    })
-                  : updateAssignment(assignment)
-              );
-              navigate(-1);
+              saveAssignment();
             }}
           >
             Save

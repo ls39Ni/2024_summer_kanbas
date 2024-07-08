@@ -1,5 +1,5 @@
 import AssignmentsControls from "./AssignmentControls";
-import { deleteAssignment } from "./reducer";
+import { setAssignments, addAssignment, deleteAssignment } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
 import { BsGripVertical } from "react-icons/bs";
 import { MdOutlineAssignment } from "react-icons/md";
@@ -8,18 +8,43 @@ import LessonControlButtons from "./LessonControButton";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import "./style.css";
 import { FaSortDown } from "react-icons/fa";
+import * as client from "./client";
+import { useEffect, useState } from "react";
 
 export default function Assignments() {
   const { cid } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const [assignmentName, setAssignementName] = useState("");
+  const createAssignment = async (assignment: any) => {
+    const newAssignment = await client.createAssignments(
+      cid as string,
+      assignment
+    );
+    dispatch(addAssignment(newAssignment));
+    navigate(`/Kanbas/Courses/${cid}/Assignments/new`);
+  };
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
 
+  const removeAssignment = async (asignmentId: string) => {
+    await client.deleteAssignment(asignmentId);
+    dispatch(deleteAssignment(asignmentId));
+  };
   return (
     <div id="wd-assignments">
       <AssignmentsControls
+        assignmentName={assignmentName}
+        setAssignementName={setAssignementName}
         addAssignment={() => {
-          navigate(`/Kanbas/Courses/${cid}/Assignments/new`);
+          createAssignment({ name: assignmentName, course: cid });
+          setAssignementName("");
         }}
       />
       <ul id="wd-assignments" className="list-group rounded-0 mt-3">
@@ -60,7 +85,7 @@ export default function Assignments() {
                     <AssignmentControlButtons
                       assignmentId={assignment._id}
                       deleteAssignment={(assignmentId) => {
-                        dispatch(deleteAssignment(assignmentId));
+                        removeAssignment(assignmentId);
                       }}
                       editAssignment={() =>
                         navigate(
