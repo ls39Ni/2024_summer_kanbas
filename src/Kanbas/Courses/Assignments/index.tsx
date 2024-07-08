@@ -4,19 +4,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { BsGripVertical } from "react-icons/bs";
 import { MdOutlineAssignment } from "react-icons/md";
 import { useParams, useNavigate } from "react-router";
-import LessonControlButtons from "./LessonControButton";
+import LessonControlButtons from "./LessonControButton"; 
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import "./style.css";
 import { FaSortDown } from "react-icons/fa";
 import * as client from "./client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export default function Assignments() {
   const { cid } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-  const [assignmentName, setAssignementName] = useState("");
+  const [assignmentName, setAssignmentName] = useState("");
+
+  const fetchAssignments = useCallback(async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  }, [cid, dispatch]);
+
+  useEffect(() => {
+    fetchAssignments();
+  }, [fetchAssignments]);
+
   const createAssignment = async (assignment: any) => {
     const newAssignment = await client.createAssignments(
       cid as string,
@@ -25,26 +35,20 @@ export default function Assignments() {
     dispatch(addAssignment(newAssignment));
     navigate(`/Kanbas/Courses/${cid}/Assignments/new`);
   };
-  const fetchAssignments = async () => {
-    const assignments = await client.findAssignmentsForCourse(cid as string);
-    dispatch(setAssignments(assignments));
-  };
-  useEffect(() => {
-    fetchAssignments();
-  }, []);
 
-  const removeAssignment = async (asignmentId: string) => {
-    await client.deleteAssignment(asignmentId);
-    dispatch(deleteAssignment(asignmentId));
+  const removeAssignment = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
   };
+
   return (
     <div id="wd-assignments">
       <AssignmentsControls
         assignmentName={assignmentName}
-        setAssignementName={setAssignementName}
+        setAssignementName={setAssignmentName}
         addAssignment={() => {
           createAssignment({ name: assignmentName, course: cid });
-          setAssignementName("");
+          setAssignmentName("");
         }}
       />
       <ul id="wd-assignments" className="list-group rounded-0 mt-3">
