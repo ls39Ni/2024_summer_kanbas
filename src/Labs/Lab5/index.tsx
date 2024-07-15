@@ -1,5 +1,6 @@
 import EnvironmentVariables from "./EnvironmentVariables";
 import PathParameters from "./PathParameters";
+import QueryParamerters from "./QueryParameters";
 import WorkingWithObjects from "./WorkingWithObjects";
 import WorkingWithArrays from "./WorkingWithArrays";
 import HttpClient from "./HttpClient";
@@ -19,6 +20,7 @@ export default function Lab5() {
       <hr />
       <EnvironmentVariables />
       <PathParameters />
+      <QueryParamerters/>
       <WorkingWithObjects />
       <WorkingWithArrays />
       <HttpClient />

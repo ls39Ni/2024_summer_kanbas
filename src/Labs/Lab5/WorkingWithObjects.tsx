@@ -18,11 +18,32 @@ export default function WorkingWithObjects() {
     description: "Introduction to React",
     course: "Web Development",
   });
-  const Module_API_URL = `${REMOTE_SERVER}/lab5/module`;
+  const MODULE_API_URL = `${REMOTE_SERVER}/lab5/module`;
 
   return (
     <div id="wd-working-with-objects">
-      <h3 id="wd-working-with-objects">Working With Objects</h3>
+      <h3>Working With Objects</h3>
+      
+      <h4>Retrieving Objects</h4>
+      <a
+        id="wd-retrieve-assignments"
+        className="btn btn-primary"
+        href={ASSIGNMENT_API_URL}
+      >
+        Get Assignment
+      </a>
+      <hr />
+      
+      <h4>Retrieving Properties</h4>
+      <a
+        id="wd-retrieve-assignment-title"
+        className="btn btn-primary"
+        href={`${ASSIGNMENT_API_URL}/title`}
+      >
+        Get Title
+      </a>
+      <hr />
+      
       <div>
         <h4>Modifying Assignment Properties</h4>
         <a
@@ -41,6 +62,7 @@ export default function WorkingWithObjects() {
           }
         />
         <hr />
+        
         <a
           id="wd-update-assignment-score"
           className="btn btn-primary float-end"
@@ -61,6 +83,7 @@ export default function WorkingWithObjects() {
           }
         />
         <hr />
+        
         <a
           id="wd-update-assignment-completed"
           className="btn btn-primary float-end"
@@ -80,25 +103,38 @@ export default function WorkingWithObjects() {
             })
           }
         />
-        <hr />
-
-        <h4>Retrieving Properties</h4>
-        <a
-          id="wd-retrieve-assignment-title"
-          className="btn btn-primary"
-          href={`${REMOTE_SERVER}/lab5/assignment/title`}
-        >
-          Get Title
-        </a>
-
+        <label className="form-check-label ml-2" htmlFor="wd-assignment-completed">True</label>
         <hr />
       </div>
+      
+      <hr />
+      
+      <h4>Retrieving Module Objects</h4>
+      <a
+        id="wd-retrieve-modules"
+        className="btn btn-primary"
+        href={MODULE_API_URL}
+      >
+        Get Module
+      </a>
+      <hr />
+      
+      <h4>Retrieving Module Properties</h4>
+      <a
+        id="wd-retrieve-module-name"
+        className="btn btn-primary"
+        href={`${REMOTE_SERVER}/lab5/module/name`}
+      >
+        Get Module Name
+      </a>
+      <hr />
+      
       <div>
         <h4>Modifying Module Properties</h4>
         <a
           id="wd-update-module-name"
           className="btn btn-primary float-end"
-          href={`${Module_API_URL}/name/${module.name}`}
+          href={`${MODULE_API_URL}/name/${module.name}`}
         >
           Update Name
         </a>
@@ -108,17 +144,6 @@ export default function WorkingWithObjects() {
           value={module.name}
           onChange={(e) => setModule({ ...module, name: e.target.value })}
         />
-        <hr />
-
-        <h4>Retrieving Properties</h4>
-        <a
-          id="wd-retrieve-module-name"
-          className="btn btn-primary"
-          href={`${REMOTE_SERVER}/lab5/module/name`}
-        >
-          Get Name
-        </a>
-
         <hr />
       </div>
     </div>

@@ -4,7 +4,13 @@ const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 
 export default function WorkingWithArrays() {
   const API = `${REMOTE_SERVER}/lab5/todos`;
-  const [todo, setTodo] = useState({ id: "1", description: "", completed: false });
+  const [todo, setTodo] = useState({
+    id: "1",
+    title: "NodeJS Assignment",
+    description: "Create a NodeJS server with ExpressJS",
+    due: "2021-09-09",
+    completed: false,
+  });
 
   return (
     <div id="wd-working-with-arrays">
@@ -47,7 +53,64 @@ export default function WorkingWithArrays() {
         Create Todo
       </a>
       <hr />
-
+      <h3>Deleting from an Array</h3>
+      <a
+        id="wd-retrieve-completed-todos"
+        className="btn btn-primary float-end"
+        href={`${API}/${todo.id}/delete`}
+      >
+        Delete Todo with ID = {todo.id}{" "}
+      </a>
+      <input
+        value={todo.id}
+        className="form-control w-50"
+        onChange={(e) => setTodo({ ...todo, id: e.target.value })}
+      />
+      <hr />
+      <h3>Updating an Item in an Array</h3>
+      <a
+        href={`${API}/${todo.id}/title/${todo.title}`}
+        className="btn btn-primary float-end"
+      >
+        Update Todo
+      </a>
+      <input
+        value={todo.id}
+        className="form-control w-25 float-start me-2"
+        onChange={(e) => setTodo({ ...todo, id: e.target.value })}
+      />
+      <input
+        value={todo.title}
+        className="form-control w-50 float-start"
+        onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+      />
+      <br />
+      <br />
+      <hr />
+      <h4>Update Todo Complete Status</h4>
+      <a
+        id="wd-update-completed-todos"
+        className="btn btn-primary float-end"
+        href={`${API}/${todo.id}/completed/${todo.completed}`}
+      >
+        Complete Todo ID = {todo.id}
+      </a>
+      <input
+        value={todo.id}
+        className="form-control w-25 float-start me-5"
+        onChange={(e) => setTodo({ ...todo, id: e.target.value })}
+      />
+      <input
+        type="checkbox"
+        className="form-check-input"
+        id="wd-todo-completed"
+        checked={todo.completed === true}
+        onChange={(e) => setTodo({ ...todo, completed: e.target.checked })}
+      />
+      
+ <br />
+      <br />
+      <hr />
       <h4>Editing Todo Description</h4>
       <a
         id="wd-update-todo-description"
