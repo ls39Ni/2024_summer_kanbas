@@ -15,7 +15,8 @@ export default function Assignments() {
   const { cid } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer,
+);
   const [assignmentName, setAssignmentName] = useState("");
 
   const fetchAssignments = useCallback(async () => {
