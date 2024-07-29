@@ -15,9 +15,8 @@ export default function Signup() {
       const currentUser = await client.signup(user);
       dispatch(setCurrentUser(currentUser));
       navigate("/Kanbas/Account/Profile");
-    } catch {
-      // Handle errors without using `err`
-      setError("An error occurred. Please try again."); // Use a generic error message
+    } catch(err:any) {
+      setError("An error occurred. Please try again."); 
     }
   };
 

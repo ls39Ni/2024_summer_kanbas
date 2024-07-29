@@ -3,6 +3,7 @@ import * as client from "./client";
 import { Link, useParams } from "react-router-dom";
 import PeopleDetails from "./Details";
 import { FaPlus } from "react-icons/fa";
+
 export default function PeopleTable() {
   const { cid } = useParams();
   const [users, setUsers] = useState<any[]>([]);
@@ -28,7 +29,7 @@ export default function PeopleTable() {
       fetchUsers();
     }
   };
-  
+
   const createUser = async () => {
     const user = await client.createUser({
       firstName: "New",
@@ -46,36 +47,54 @@ export default function PeopleTable() {
   }, []);
   return (
     <div id="wd-people-table">
-        <button onClick={createUser} className="float-end btn btn-danger">
+      <button onClick={createUser} className="float-end btn btn-danger">
         <FaPlus className="me-2" />
         People
       </button>
-        <PeopleDetails fetchUsers={fetchUsers} />
+      <PeopleDetails fetchUsers={fetchUsers} />
       <div>
-      <input onChange={(e) => filterUsersByName(e.target.value)} placeholder="Search people"
-             className="form-control float-start w-25 me-2" />
+        <input
+          onChange={(e) => filterUsersByName(e.target.value)}
+          placeholder="Search people"
+          className="form-control float-start w-25 me-2"
+        />
       </div>
 
-      <select value={role} onChange={(e) =>filterUsersByRole(e.target.value)} className="form-select float-start w-25" >
-        <option value="">All Roles</option>        <option value="STUDENT">Students</option>
-        <option value="TA">Assistants</option>     <option value="FACULTY">Faculty</option>
+      <select
+        value={role}
+        onChange={(e) => filterUsersByRole(e.target.value)}
+        className="form-select float-start w-25"
+      >
+        <option value="">All Roles</option>{" "}
+        <option value="STUDENT">Students</option>
+        <option value="TA">Assistants</option>{" "}
+        <option value="FACULTY">Faculty</option>
       </select>
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Name</th><th>Login ID</th><th>Section</th><th>Role</th><th>Last Activity</th><th>Total Activity</th>
+            <th>Name</th>
+            <th>Login ID</th>
+            <th>Section</th>
+            <th>Role</th>
+            <th>Last Activity</th>
+            <th>Total Activity</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user: any) => (
             <tr key={user._id}>
-              <td className="text-nowrap"> 
-              <Link to={`/Kanbas/Courses/${cid}/People/${user._id}`}
-                      className="no-underline"
-                      >
-                <span className="wd-first-name text-danger">{user.firstName}</span>
-                {' '}
-                <span className="wd-last-name text-danger">{user.lastName}</span>
+              <td className="text-nowrap">
+                <Link
+                  to={`/Kanbas/Courses/${cid}/People/${user._id}`}
+                  className="no-underline"
+                >
+                  <span className="wd-first-name text-danger">
+                    {user.firstName}
+                  </span>{" "}
+                  <span className="wd-last-name text-danger">
+                    {user.lastName}
+                  </span>
                 </Link>
               </td>
               <td>{user.loginId}</td>
@@ -87,7 +106,7 @@ export default function PeopleTable() {
           ))}
         </tbody>
       </table>
-      <PeopleDetails fetchUsers={fetchUsers}/>
+      <PeopleDetails fetchUsers={fetchUsers} />
     </div>
   );
 }
