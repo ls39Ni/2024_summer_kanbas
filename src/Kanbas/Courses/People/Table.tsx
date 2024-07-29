@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import * as client from "./client";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PeopleDetails from "./Details";
 import { FaPlus } from "react-icons/fa";
 export default function PeopleTable() {
+  const { cid } = useParams();
   const [users, setUsers] = useState<any[]>([]);
   const [role, setRole] = useState("");
+  const fetchUsers = async () => {
+    const users = await client.findAllUsers();
+    setUsers(users);
+  };
   const filterUsersByName = async (name: string) => {
     if (name) {
       const users = await client.findUsersByPartialName(name);
@@ -23,10 +28,7 @@ export default function PeopleTable() {
       fetchUsers();
     }
   };
-  const fetchUsers = async () => {
-    const users = await client.findAllUsers();
-    setUsers(users);
-  };
+  
   const createUser = async () => {
     const user = await client.createUser({
       firstName: "New",
@@ -68,9 +70,13 @@ export default function PeopleTable() {
           {users.map((user: any) => (
             <tr key={user._id}>
               <td className="text-nowrap"> 
-              <Link to={`/Kanbas/Courses/1234/People/${user._id}`}>
-              {user.firstName} {user.lastName}
-              </Link>
+              <Link to={`/Kanbas/Courses/${cid}/People/${user._id}`}
+                      className="no-underline"
+                      >
+                <span className="wd-first-name text-danger">{user.firstName}</span>
+                {' '}
+                <span className="wd-last-name text-danger">{user.lastName}</span>
+                </Link>
               </td>
               <td>{user.loginId}</td>
               <td>{user.section}</td>
@@ -81,6 +87,7 @@ export default function PeopleTable() {
           ))}
         </tbody>
       </table>
+      <PeopleDetails fetchUsers={fetchUsers}/>
     </div>
   );
 }

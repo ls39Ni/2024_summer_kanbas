@@ -17,7 +17,7 @@ export default function Profile() {
   }, [navigate]);
   const signout = async () => {
     await client.signout();
-    dispatch(setCurrentUser(null));
+    // dispatch(setCurrentUser(null));
     navigate("/Kanbas/Account/Signin");
   };
   useEffect(() => { 
