@@ -1,29 +1,30 @@
-import { useEffect, useState } from "react"; 
+import { useState, useEffect, useCallback } from "react";
 import { FaPencil } from "react-icons/fa6";
 import { FaCheck, FaUserCircle } from "react-icons/fa";
-import { IoCloseSharp } from "react-icons/io5"; 
-import { useParams, useNavigate } from "react-router"; 
-import { Link } from "react-router-dom"; 
-import * as client from "./client"; 
+import { IoCloseSharp } from "react-icons/io5";
+import { useParams, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import * as client from "./client";
 
-
-export default function PeopleDetails({ fetchUsers }: { fetchUsers: () => void; }) { 
+export default function PeopleDetails({ fetchUsers }: { fetchUsers: () => void; }) {
   const { uid, cid } = useParams();
   const [user, setUser] = useState<any>({});
   const [name, setName] = useState("");
   const [editing, setEditing] = useState(false);
   const navigate = useNavigate();
-  const fetchUser = async () => { 
-    if (!uid) 
-      return; 
-    const user = await client.findUserById(uid); 
-    setUser(user); 
-  }; 
+
+  const fetchUser = useCallback(async () => {
+    if (!uid) return;
+    const user = await client.findUserById(uid);
+    setUser(user);
+  }, [uid]);
+
   useEffect(() => {
-    if (uid) fetchUser(); 
-  }, [uid]); 
-  if (!uid) return null; 
-  
+    fetchUser();
+  }, [fetchUser]);
+
+  if (!uid) return null;
+
   const deleteUser = async (uid: string) => {
     await client.deleteUser(uid);
     fetchUsers();
@@ -39,32 +40,38 @@ export default function PeopleDetails({ fetchUsers }: { fetchUsers: () => void; 
     fetchUsers();
     navigate(`/Kanbas/Courses/${cid}/People`);
   };
-  
+
   return (
     <div className="wd-people-details position-fixed top-0 end-0 bottom-0 bg-white p-4 shadow w-25">
       <Link to={`/Kanbas/Courses/${cid}/People`} className="btn position-fixed end-0 top-0 wd-close-details">
-        <IoCloseSharp className="fs-1" /> </Link>
-      <div className="text-center mt-2"> 
-        <FaUserCircle className="text-secondary me-2 fs-1" /> 
+        <IoCloseSharp className="fs-1" />
+      </Link>
+      <div className="text-center mt-2">
+        <FaUserCircle className="text-secondary me-2 fs-1" />
       </div>
       <hr />
-      <div className="text-danger fs-4 wd-name"> 
+      <div className="text-danger fs-4 wd-name">
         {!editing && (
-          <FaPencil onClick={() => setEditing(true)}
-              className="float-end fs-5 mt-2 wd-edit" /> )}
+          <FaPencil onClick={() => setEditing(true)} className="float-end fs-5 mt-2 wd-edit" />
+        )}
         {editing && (
-          <FaCheck onClick={() => saveUser()}
-              className="float-end fs-5 mt-2 me-2 wd-save" /> )}
+          <FaCheck onClick={() => saveUser()} className="float-end fs-5 mt-2 me-2 wd-save" />
+        )}
         {!editing && (
-          <div className="wd-name"
-                onClick={() => setEditing(true)}>
-            {user.firstName} {user.lastName}</div>)}
+          <div className="wd-name" onClick={() => setEditing(true)}>
+            {user.firstName} {user.lastName}
+          </div>
+        )}
         {user && editing && (
-          <input className="form-control w-50 wd-edit-name"
+          <input
+            className="form-control w-50 wd-edit-name"
             defaultValue={`${user.firstName} ${user.lastName}`}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "Enter") { saveUser(); }}}
+              if (e.key === "Enter") {
+                saveUser();
+              }
+            }}
           />
         )}
       </div>
@@ -73,12 +80,12 @@ export default function PeopleDetails({ fetchUsers }: { fetchUsers: () => void; 
       <b>Section: </b><span className="wo-section">{user.section}</span><br/>
       <b>Total Activity: </b><span className="wo-total-activity">{user.totalActivity}</span><br/>
       <hr />
-      <button onClick={() => deleteUser(uid)} className="btn btn-danger float-end wd-delete" > 
-        Delete</button>
-
-      <button onClick={() => navigate(`/Kanbas/Courses/${cid}/People`)}
-              className="btn btn-secondary float-start float-end me-2 wd-cancel" > 
-        Cancel </button>
+      <button onClick={() => deleteUser(uid)} className="btn btn-danger float-end wd-delete">
+        Delete
+      </button>
+      <button onClick={() => navigate(`/Kanbas/Courses/${cid}/People`)} className="btn btn-secondary float-start float-end me-2 wd-cancel">
+        Cancel
+      </button>
     </div>
   );
 }

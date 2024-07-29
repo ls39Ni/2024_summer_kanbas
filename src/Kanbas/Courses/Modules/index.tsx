@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { BsGripVertical } from "react-icons/bs";
 import ModulesControls from "./ModulesControls";
 import ModulesControlButtons from "./ModuleControlButtons";
@@ -20,13 +20,14 @@ export default function Modules() {
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
 
-  const fetchModules = async () => {
+  const fetchModules = useCallback(async () => {
     const modules = await client.findModulesForCourse(cid as string);
     dispatch(setModules(modules));
-  };
+  }, [cid, dispatch]);
+
   useEffect(() => {
     fetchModules();
-  }, []);
+  }, [fetchModules]);
 
   const createModule = async (module: any) => {
     const newModule = await client.createModule(cid as string, module);
@@ -39,7 +40,7 @@ export default function Modules() {
   };
 
   const saveModule = async (module: any) => {
-    const status = await client.updateModule(module);
+    await client.updateModule(module);
     dispatch(updateModule(module));
   };
 
@@ -60,16 +61,12 @@ export default function Modules() {
         {modules
           .filter((module: any) => module.course === cid)
           .map((module: any) => (
-            <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+            <li key={module._id} className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
               <div className="wd-title p-3 ps-2 bg-secondary">
                 <ModulesControlButtons
                   moduleId={module._id}
-                  deleteModule={(moduleId) => {
-                    removeModule(moduleId);
-                  }}
-                  editModule={(moduleId) => {
-                    dispatch(editModule(moduleId));
-                  }}
+                  deleteModule={() => removeModule(module._id)}
+                  editModule={() => dispatch(editModule(module._id))}
                 />
                 <BsGripVertical className="me-2 fs-3" />
                 {!module.editing && module.name}
@@ -93,7 +90,7 @@ export default function Modules() {
               {module.lessons && (
                 <ul className="wd-lessons list-group rounded-0">
                   {module.lessons.map((lesson: any) => (
-                    <li className="wd-lesson list-group-item p-3 ps-1">
+                    <li key={lesson._id} className="wd-lesson list-group-item p-3 ps-1">
                       <BsGripVertical className="me-2 fs-3" />
                       {lesson.name}
                       <LessonControlButtons />
