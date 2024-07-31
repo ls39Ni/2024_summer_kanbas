@@ -81,7 +81,7 @@ export default function TOC() {
       <li className="nav-item">
         <a
           id="wd-render"
-          href="https://kanbas-node-server-app-pzpi.onrender.com"
+          href="https://kanbas-node-server-app-2-683o.onrender.com"
           className="nav-link"
         >
           Render Server
